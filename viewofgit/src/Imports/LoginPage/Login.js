@@ -14,10 +14,13 @@ const checkPassword = (e) => {
 	e.preventDefault();
 	const password = document.getElementById('password').value;
 	//console.log(password);
-	if(!passwordStrength(password)){
+	if(passwordStrength(password)!='strong'){
 		console.log("Weak Password");
+		return false;
 	}
-	console.log("Password Strong enough");
+	//console.log(passwordStrength(password));
+	//console.log("Password Strong enough");
+	return true;
 }
 
 const handleClick = (e) => {
@@ -25,7 +28,10 @@ const handleClick = (e) => {
 	const emailId = document.getElementById('email').value;
 	const password = document.getElementById('password').value;
 	//console.log(emailId+" "+password);
-	if(LoginData(emailId, password)){
+	if(!LoginData(emailId, password)){
+		return;
+	}
+	if(passwordStrength(password)!='strong'){
 		return;
 	}
 	state.email = emailId;
