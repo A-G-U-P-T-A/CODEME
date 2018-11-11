@@ -5,9 +5,21 @@ import React, {
 	//Component 
 } from 'react';
 
+var state = {
+	email: '',
+	password: '',
+}
+
 const handleClick = (e) => {
 	e.preventDefault();
-	console.log('The link was clicked.');
+	const emailId = document.getElementById('email').value;
+	const password = document.getElementById('password').value;
+	//console.log(emailId+" "+password);
+	if(LoginData(emailId, password))
+	state.email = emailId;
+	state.password = password;
+	//document.setElementById
+	//console.log(state.email+" "+state.password);
 }
 
 export const LoginPage = _ => {
@@ -26,8 +38,8 @@ export const LoginPage = _ => {
 					<div className="Login">
 						<div className="LogInHeader">Login With Email & Password</div>
 						<form>
-							<input name="name" placeholder="Enter the registered email id" type="text" required/><br/>
-							<input password="password" placeholder="Enter password" type="password" required/><br/>
+							<input id="email" name="email" placeholder="Enter the registered email id" type="text" required/><br/>
+							<input id="password" password="password" placeholder="Enter password" type="password" required/><br/>
 							<input type="Submit" onClick={e => handleClick(e)}/>
 						</form>
 					</div>
