@@ -38,6 +38,7 @@ const handleClick = (e) => {
 	state.password = password;
 	//document.setElementById
 	//console.log(state.email+" "+state.password);
+	
 }
 
 export const LoginPage = _ => {
