@@ -1,6 +1,6 @@
 import './CSS/Login.css';
 import './CSS/Search.css';
-import {LoginData} from './Scripts/HandleFormData.js';
+import {LoginData, passwordStrength} from './Scripts/HandleFormData.js';
 import React, {
 	//Component 
 } from 'react';
@@ -10,12 +10,24 @@ var state = {
 	password: '',
 }
 
+const checkPassword = (e) => {
+	e.preventDefault();
+	const password = document.getElementById('password').value;
+	//console.log(password);
+	if(!passwordStrength(password)){
+		console.log("Weak Password");
+	}
+	console.log("Password Strong enough");
+}
+
 const handleClick = (e) => {
 	e.preventDefault();
 	const emailId = document.getElementById('email').value;
 	const password = document.getElementById('password').value;
 	//console.log(emailId+" "+password);
-	if(LoginData(emailId, password))
+	if(LoginData(emailId, password)){
+		return;
+	}
 	state.email = emailId;
 	state.password = password;
 	//document.setElementById
@@ -39,7 +51,7 @@ export const LoginPage = _ => {
 						<div className="LogInHeader">Login With Email & Password</div>
 						<form>
 							<input id="email" name="email" placeholder="Enter the registered email id" type="text" required/><br/>
-							<input id="password" password="password" placeholder="Enter password" type="password" required/><br/>
+							<input id="password" password="password" placeholder="Enter password" type="password" onChange={e => checkPassword(e)} required/><br/>
 							<input type="Submit" onClick={e => handleClick(e)}/>
 						</form>
 					</div>
